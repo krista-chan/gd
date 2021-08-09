@@ -1,0 +1,17 @@
+[package]
+name = "gd_core"
+version = "0.1.0"
+edition = "2018"
+description = "Unsafe FFI definitions for interacting with geometry dash"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+detour = "0.8.1"
+rcocos2d-sys = "0.2.4"
+getfn = "0.1.1"
+struct-pad = "0.2.0"
+
+[dependencies.winapi]
+version = "0.3.9"
+features = ["winuser"]
