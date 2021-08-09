@@ -24,70 +24,28 @@ pub struct FLAlertLayer {
     button2: *mut PhantomData<u8>,         // ButtonSprite
     scrolling_layer: *mut PhantomData<u8>, // ScrollingLayer
     __pad2: PadU32,                          // pad m_nJoystickConnected
-    button_border: Option<bool>,
+    button_border: bool,
     button_no_action: bool,
 }
 
 impl FLAlertLayer {
     symbol_fn! {
-        ("GeometryDash.exe" + 0x23750) pub unsafe extern "thiscall" fn Self::__on_enter(this: *mut FLAlertLayer);
-        ("GeometryDash.exe" + 0x236F0) pub unsafe extern "thiscall" fn Self::__register_with_touch_dispatcher(this: *mut FLAlertLayer);
-        ("GeometryDash.exe" + 0x233C0) pub unsafe extern "thiscall" fn Self::__cc_touch_began(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent) -> bool;
-        ("GeometryDash.exe" + 0x23510) pub unsafe extern "thiscall" fn Self::__cc_touch_moved(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent);
-        ("GeometryDash.exe" + 0x23450) pub unsafe extern "thiscall" fn Self::__cc_touch_ended(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent);
-        ("GeometryDash.exe" + 0x234C0) pub unsafe extern "thiscall" fn Self::__cc_touch_cancelled(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent);
-        ("GeometryDash.exe" + 0x23750) pub unsafe extern "thiscall" fn Self::__key_down(this: *mut FLAlertLayer, key: i32);
-        ("GeometryDash.exe" + 0x232C0) pub unsafe extern "thiscall" fn Self::__key_back_clicked(this: *mut FLAlertLayer);
-        ("GeometryDash.exe" + 0x23560) pub unsafe extern "thiscall" fn Self::__show(this: *mut FLAlertLayer);
-        ("GeometryDash.exe" + 0x224B0) pub unsafe extern "thiscall" fn Self::__FLAlertLayer() -> *mut FLAlertLayer;
-        ("GeometryDash.exe" + 0x225c0) pub unsafe extern "thiscall" fn Self::__destructor(this: *mut FLAlertLayer);
-        ("GeometryDash.exe" + 0x224B0) pub unsafe extern "thiscall" fn Self::__on_button_1(this: *mut FLAlertLayer, button: *mut cocos2d_CCObject);
-        ("GeometryDash.exe" + 0x224B0) pub unsafe extern "thiscall" fn Self::__on_button_2(this: *mut FLAlertLayer, button: *mut cocos2d_CCObject);
-        ("GeometryDash.exe" + 0x22680) pub unsafe extern "thiscall" fn Self::__create(this: *mut FLAlertLayer, target: *mut dyn FLAlertLayerProtocol, title: *const c_char, button_1: *const c_char, button_2: *const c_char, caption: CString) -> *mut FLAlertLayer;
-        ("GeometryDash.exe" + 0x22680) pub unsafe extern "thiscall" fn Self::__create_with_width(this: *mut FLAlertLayer, target: *mut dyn FLAlertLayerProtocol, title: *const c_char, button_1: *const c_char, button_2: *const c_char, width: f32, caption: CString) -> *mut FLAlertLayer;
+        ("GeometryDash.exe" + 0x23750) pub(crate) unsafe extern "thiscall" fn Self::on_enter(this: *mut FLAlertLayer);
+        ("GeometryDash.exe" + 0x236F0) pub(crate) unsafe extern "thiscall" fn Self::register_with_touch_dispatcher(this: *mut FLAlertLayer);
+        ("GeometryDash.exe" + 0x233C0) pub(crate) unsafe extern "thiscall" fn Self::cc_touch_began(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent) -> bool;
+        ("GeometryDash.exe" + 0x23510) pub(crate) unsafe extern "thiscall" fn Self::cc_touch_moved(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent);
+        ("GeometryDash.exe" + 0x23450) pub(crate) unsafe extern "thiscall" fn Self::cc_touch_ended(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent);
+        ("GeometryDash.exe" + 0x234C0) pub(crate) unsafe extern "thiscall" fn Self::cc_touch_cancelled(this: *mut FLAlertLayer, touch: *mut cocos2d_CCTouch, event: *mut cocos2d_CCEvent);
+        ("GeometryDash.exe" + 0x23750) pub(crate) unsafe extern "thiscall" fn Self::key_down(this: *mut FLAlertLayer, key: i32);
+        ("GeometryDash.exe" + 0x232C0) pub(crate) unsafe extern "thiscall" fn Self::key_back_clicked(this: *mut FLAlertLayer);
+        ("GeometryDash.exe" + 0x23560) pub(crate) unsafe extern "thiscall" fn Self::show(this: *mut FLAlertLayer);
+        ("GeometryDash.exe" + 0x224B0) pub(crate) unsafe extern "thiscall" fn Self::new() -> *mut FLAlertLayer;
+        ("GeometryDash.exe" + 0x225c0) pub(crate) unsafe extern "thiscall" fn Self::drop(this: *mut FLAlertLayer);
+        ("GeometryDash.exe" + 0x224B0) pub(crate) unsafe extern "thiscall" fn Self::on_button_1(this: *mut FLAlertLayer, button: *mut cocos2d_CCObject);
+        ("GeometryDash.exe" + 0x224B0) pub(crate) unsafe extern "thiscall" fn Self::on_button_2(this: *mut FLAlertLayer, button: *mut cocos2d_CCObject);
+        ("GeometryDash.exe" + 0x22680) pub(crate) unsafe extern "thiscall" fn Self::__create(target: *mut dyn FLAlertLayerProtocol, title: *const c_char, button_1: *const c_char, button_2: *const c_char, caption: CString) -> *mut FLAlertLayer;
+        ("GeometryDash.exe" + 0x22680) pub(crate) unsafe extern "thiscall" fn Self::__create_with_width(target: *mut dyn FLAlertLayerProtocol, title: *const c_char, button_1: *const c_char, button_2: *const c_char, width: f32, caption: CString) -> *mut FLAlertLayer;
     }
-
-    pub fn on_enter(&mut self) {
-        unsafe { Self::__on_enter(self) }
-    }
-
-    pub fn register_with_touch_dispatcher(&mut self) {
-        unsafe { Self::__register_with_touch_dispatcher(self) }
-    }
-
-    pub fn cc_touch_began(&mut self, touch: &mut cocos2d_CCTouch, event: &mut cocos2d_CCEvent) -> bool {
-        unsafe { Self::__cc_touch_began(self, touch, event) }
-    }
-
-    pub fn cc_touch_moved(&mut self, touch: &mut cocos2d_CCTouch, event: &mut cocos2d_CCEvent) {
-        unsafe { Self::__cc_touch_moved(self, touch, event) }
-    }
-
-    pub fn cc_touch_ended(&mut self, touch: &mut cocos2d_CCTouch, event: &mut cocos2d_CCEvent) {
-        unsafe { Self::__cc_touch_ended(self, touch, event) }
-    }
-
-    pub fn cc_touch_cancelled(&mut self, touch: &mut cocos2d_CCTouch, event: &mut cocos2d_CCEvent) {
-        unsafe { Self::__cc_touch_moved(self, touch, event) }
-    }
-
-    pub fn key_down(&mut self, key: i32) {
-        unsafe { Self::__key_down(self, key) }
-    }
-
-    pub fn key_back_clicked(&mut self) {
-        unsafe { Self::__key_back_clicked(self) }
-    }
-
-    pub fn show(&mut self) {
-        unsafe { Self::__show(self) }
-    }
-
-    pub fn new() -> &'static FLAlertLayer {
-        unsafe { Self::__FLAlertLayer().as_ref().unwrap() }
-    }
-
-
 
     pub fn create(
         &mut self,
@@ -99,9 +57,8 @@ impl FLAlertLayer {
     ) -> &'static FLAlertLayer {
         unsafe {
             let strs = all_to_cstring!(title, button_1, button_2, caption);
-
+            
             let ret = Self::__create(
-                self,
                 Box::<_>::into_raw(target),
                 strs[0].as_ptr(),
                 strs[1].as_ptr(),
@@ -127,7 +84,6 @@ impl FLAlertLayer {
             let strs = all_to_cstring!(title, button_1, button_2, caption);
 
             let ret = Self::__create_with_width(
-                self,
                 Box::<_>::into_raw(target),
                 strs[0].as_ptr(),
                 strs[1].as_ptr(),
@@ -139,11 +95,5 @@ impl FLAlertLayer {
 
             ret.as_ref().unwrap()
         }
-    }
-}
-
-impl Drop for FLAlertLayer {
-    fn drop(&mut self) {
-        unsafe { Self::__destructor(self) }
     }
 }
