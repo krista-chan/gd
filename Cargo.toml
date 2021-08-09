@@ -1,5 +1,5 @@
 [package]
-name = "gd_core"
+name = "gd"
 version = "0.1.0"
 edition = "2018"
 description = "Unsafe FFI definitions for interacting with geometry dash"
