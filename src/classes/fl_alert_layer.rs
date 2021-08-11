@@ -48,7 +48,6 @@ impl FLAlertLayer {
     }
 
     pub fn create(
-        &mut self,
         target: Box<dyn FLAlertLayerProtocol>,
         title: &str,
         button_1: &str,
@@ -72,7 +71,6 @@ impl FLAlertLayer {
     }
 
     pub fn create_with_width(
-        &mut self,
         target: Box<dyn FLAlertLayerProtocol>,
         title: &str,
         button_1: &str,
