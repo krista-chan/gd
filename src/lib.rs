@@ -4,6 +4,7 @@
 #![allow(dead_code, non_snake_case)]
 
 pub mod classes;
+pub mod traits;
 use winapi as __getfn_winapi__;
 
 #[macro_export]
